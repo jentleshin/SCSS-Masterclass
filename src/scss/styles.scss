@@ -1,8 +1,19 @@
-body {
-  background: mediumorchid;
-  a {
-    color: red;
-    font-size: 23px;
-    margin-top: 10px;
+@import "_variables";
+@import "_mixins";
+@import "_buttons";
+
+h1 {
+  color: red;
+  @include responsive("iphone") {
+    color: yellow;
+  }
+  @include responsive("iphone-l") {
+    color: peru;
+  }
+  @include responsive("iphone") {
+    color: yellow;
+  }
+  @include responsive("iphone") {
+    color: yellow;
   }
 }
