@@ -3,6 +3,7 @@ import del from "del";
 import sass from "gulp-sass";
 import minify from "gulp-csso";
 import autoprefixer from "gulp-autoprefixer";
+import imagemin from "gulp-imagemin";
 
 sass.compiler = require("node-sass");
 
@@ -12,7 +13,18 @@ const routes = {
     src: "src/scss/styles.scss",
     dest: "dest/css",
   },
+  image: {
+    watch: "img/*",
+    src: "img/Hero.jpg",
+    dest: "dest/img",
+  },
 };
+
+const optImg = () =>
+  gulp
+    .src(routes.image.src)
+    .pipe(imagemin())
+    .pipe(gulp.dest(routes.image.dest));
 
 const styles = () =>
   gulp
@@ -29,11 +41,12 @@ const styles = () =>
 
 const watch = () => {
   gulp.watch(routes.css.watch, styles);
+  gulp.watch(routes.image.watch, optImg);
 };
 
 const clean = () => del(["dest/styles.css"]);
 
-const prepare = gulp.series([clean]);
+const prepare = gulp.series([clean, optImg]);
 
 const assets = gulp.series([styles]);
 

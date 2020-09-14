@@ -27,5 +27,8 @@
     "browsers": [
       "last 2 versions"
     ]
+  },
+  "devDependencies": {
+    "gulp-imagemin": "^7.1.0"
   }
 }
